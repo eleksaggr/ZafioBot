@@ -37,6 +37,9 @@ class InlineHandler(telepot.helper.UserHandler):
         id, fromId, queryString = telepot.glance(
             message, flavor="inline_query")
 
+        if queryString == "":
+            return
+
         def compute():
             return [{
                 "type": "article",
@@ -61,6 +64,7 @@ def main():
     bot = telepot.DelegatorBot(
         getToken(), [(per_inline_from_id(), create_open(InlineHandler, timeout=None)), ])
     logger.info("Bot registered.")
+
     bot.notifyOnMessage(run_forever=True)
 
     logger.info("Application closing.")
