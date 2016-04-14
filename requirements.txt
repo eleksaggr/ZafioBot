@@ -1,2 +1,4 @@
+configobj==5.0.6
 requests==2.9.1
+six==1.10.0
 twx.botapi==2.1.0
