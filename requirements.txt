@@ -1,0 +1,2 @@
+requests==2.9.1
+twx.botapi==2.1.0
