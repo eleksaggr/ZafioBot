@@ -48,13 +48,16 @@ class InlineHandler(telepot.helper.UserHandler):
                 "message_text": queryString[::-1]
             }]
 
-        logger.info("Sending: {0}".format(compute()))
+        result = compute()[0]
+
+        logger.info("Proposing: \"{0}\" to ID {1}".format(
+            result["message_text"], fromId))
         self._answerer.answer(message, compute)
 
     def on_chosen_inline_result(self, message):
         resultId, fromId, queryString = telepot.glance(
             message, flavor="chosen_inline_result")
-        logger.info("{0}: {1}".format(fromId, queryString))
+        logger.info("Served \"{0}\" to ID {1}".format(queryString, fromId))
 
 
 def main():
